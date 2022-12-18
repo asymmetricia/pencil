@@ -28,7 +28,7 @@ func Line(i draw.Image, a, b image.Point, col color.Color) {
 	nrgba := color.NRGBAModel.Convert(col).(color.NRGBA)
 	plot := func(x, y int, c uint8) {
 		c2 := nrgba
-		c2.A = c
+		c2.A = uint8(uint16(c2.A) * uint16(c) / 0xFF)
 		BlendAt(i, x, y, c2)
 	}
 
